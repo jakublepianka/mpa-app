@@ -1,9 +1,13 @@
 import { Router } from "express";
-import { getHealthStatus } from "../controllers/analysis.controller";
+import { getHealthStatus, getAnalysisResults } from "../controllers/analysis.controller";
 
 const analysisRouter = Router();
 
 analysisRouter.get("/health", getHealthStatus);
+
+analysisRouter.get("/search", getAnalysisResults);
+
+
 
 export { analysisRouter };
 
