@@ -4,7 +4,7 @@ function App() {
   useEffect(() => {
     const controller = new AbortController();
 
-    fetch("/api/health", { signal: controller.signal })
+    fetch("/api/search?term=strength+training", { signal: controller.signal })
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => {
