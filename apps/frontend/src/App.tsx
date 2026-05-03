@@ -1,19 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 function App() {
-  useEffect(() => {
-    const controller = new AbortController();
+  const didFetch = useRef(false);
 
-    fetch("/api/search?term=strength+training", { signal: controller.signal })
+  useEffect(() => {
+    if (didFetch.current) return;
+    didFetch.current = true;
+
+    fetch("/api/search?term=strength+training")
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => {
         if (error.name !== "AbortError") console.error(error);
       });
 
-    return () => {
-      controller.abort();
-    };
   }, []);
 
 
