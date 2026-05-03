@@ -2,7 +2,7 @@ export type ESearchResponse = {
   count: number;
   retMax: number;
   ids: string[];
-  translations?: {
+  translations: {
     from: string;
     to: string;
   }[];
