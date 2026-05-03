@@ -9,6 +9,16 @@ export const buildESearchUrl = (term: string): URL => {
   url.searchParams.set("retmax", "1000");
   url.searchParams.set("retmode", "json");
   url.searchParams.set("api_key", apiKey);
+  
+  return url;
+};
+
+export const buildEFetchUrl = (): URL => {
+  const { baseUrl, apiKey, db } = config.ncbi;
+  const url = new URL("efetch.fcgi", baseUrl);
+
+  url.searchParams.set("db", db);
+  url.searchParams.set("api_key", apiKey);
 
   return url;
 };
