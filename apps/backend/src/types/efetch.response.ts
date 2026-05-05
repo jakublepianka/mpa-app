@@ -9,7 +9,7 @@ export type EFetchResponse = {
     };
     abstract?: string;
     doi?: string;
-    publicationType?: string;
+    publicationTypes?: string[];
     authors: {
       foreName?: string;
       lastName: string;

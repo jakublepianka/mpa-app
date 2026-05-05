@@ -21,7 +21,6 @@ export const fetchEFetch = async (ids: string[]): Promise<EFetchResponse> => {
   const articles: any[] = [];
   let nextAllowedTime = Date.now();
 
-  console.time("efetch");
   for (let i = 0; i < ids.length; i += batchSize) {
     const now = Date.now();
 
@@ -43,24 +42,17 @@ export const fetchEFetch = async (ids: string[]): Promise<EFetchResponse> => {
     });
 
     if (!res.ok) {
-      let errorBody;
-      try {
-        errorBody = await res.json();
-      } catch {
-        errorBody = await res.text();
-      }
-
       throw new Error(
-        `EFetch failed: ${res.status} ${res.statusText} - ${JSON.stringify(errorBody)}`,
+        `EFetch failed: ${res.status} ${res.statusText}`,
       );
     }
 
     const xml = await res.text();
+    if (!xml.includes("<PubmedArticle")) continue; 
     const parsed = parseEFetchXML(xml);
 
     articles.push(...parsed.articles);
   }
-  console.timeEnd("efetch");
 
   return { articles: articles };
 };

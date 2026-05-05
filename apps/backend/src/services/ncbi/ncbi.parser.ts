@@ -29,11 +29,7 @@ export const parseEFetchXML = (xml: string): EFetchResponse => {
         ? `${date.Year}-${padDate(String(date.Month))}-${padDate(String(date.Day))}`
         : undefined;
       const doi = findByAttr(article.ELocationID, "EIdType", "doi");
-      const publicationType = findByAttr(
-        article.PublicationTypeList.PublicationType,
-        "UI",
-        "D000078182",
-      );
+      const publicationTypeArray = ensureArray(article.PublicationTypeList.PublicationType);
       const authorList = ensureArray(article.AuthorList?.Author);
       const abstract = ensureArray(article.Abstract?.AbstractText)
         .map(extractText)
@@ -49,7 +45,7 @@ export const parseEFetchXML = (xml: string): EFetchResponse => {
         },
         abstract: abstract,
         doi: doi,
-        publicationType: publicationType,
+        publicationType: publicationTypeArray.map((type: any) => type["#text"]),
         authors: authorList.map((author) => {
           return {
             foreName: author.ForeName ?? "",
