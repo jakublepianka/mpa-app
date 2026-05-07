@@ -1,6 +1,7 @@
 import { XMLParser } from "fast-xml-parser";
 import { ESearchResponse } from "../../types/esearch.response";
 import { EFetchResponse } from "../../types/efetch.response";
+import { normalizeText } from "./ncbi.normalize";
 
 export const mapESearchResponse = (data: any): ESearchResponse => {
   const result = data.esearchresult;
@@ -31,19 +32,22 @@ export const parseEFetchXML = (xml: string): EFetchResponse => {
       const doi = findByAttr(article.ELocationID, "EIdType", "doi");
       const publicationTypeArray = ensureArray(article.PublicationTypeList.PublicationType);
       const authorList = ensureArray(article.AuthorList?.Author);
+      const title = ensureArray(article.ArticleTitle)
+        .map(extractText)
+        .join(" ");
       const abstract = ensureArray(article.Abstract?.AbstractText)
         .map(extractText)
         .join(" ");
 
       return {
         id: a.MedlineCitation.PMID["#text"],
-        title: article.ArticleTitle,
+        title: normalizeText(title) ?? "",
         publicationDate: publicationDate,
         journal: {
           journalId: article.Journal.ISSN?.["#text"],
           journalTitle: article.Journal.Title,
         },
-        abstract: abstract,
+        abstract: normalizeText(abstract),
         doi: doi,
         publicationType: publicationTypeArray.map((type: any) => type["#text"]),
         authors: authorList.map((author) => {
@@ -93,5 +97,5 @@ const extractText = (node: any): string => {
     return Object.values(node).map(extractText).join("");
   }
 
-  return "";
+  return " ";
 };
