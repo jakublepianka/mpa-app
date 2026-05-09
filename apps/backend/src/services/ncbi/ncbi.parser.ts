@@ -88,13 +88,13 @@ const extractText = (node: any): string => {
   if (typeof node === "string") return node;
 
   if (Array.isArray(node)) {
-    return node.map(extractText).join("");
+    return node.map(extractText).join(" ");
   }
 
   if (typeof node === "object") {
-    if ("#text" in node) return node["#text"];
+    if ("#text" in node) return " " + node["#text"];
 
-    return Object.values(node).map(extractText).join("");
+    return " " + Object.values(node).map(extractText).join(" ");
   }
 
   return " ";
