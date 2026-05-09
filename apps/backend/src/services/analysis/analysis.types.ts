@@ -12,7 +12,7 @@ export type AnalysisResult = {
   byDate: Record<string, number>;
   publicationTypes: Record<string, number>;
   keywords: Record<string, number>;
-  sampleSizes: {
+  sampleSizes?: {
     average?: number;
     min?: number;
     max?: number;
