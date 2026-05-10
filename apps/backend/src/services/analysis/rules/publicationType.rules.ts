@@ -24,18 +24,22 @@ export const PUBLICATION_TYPE_PATTERNS = [
     patterns: [/(?<!systematic\s)(?<!narrative\s)(?<!scoping\s)\breview\b/i],
   },
   {
+    type: "non-randomized controlled trial",
+    patterns: [
+      /\bnon-randomized controlled trial\b/i,
+      /\bnon-randomised controlled trial\b/i,
+      /\bnon-randomized clinical trial\b/i,
+      /\bnon-randomised clinical trial\b/i,
+    ],
+  },
+  {
     type: "randomized controlled trial",
     patterns: [
       /\brandomized controlled trial\b/i,
       /\brandomised controlled trial\b/i,
-      /\brct\b/i,
-    ],
-  },
-  {
-    type: "randomized clinical trial",
-    patterns: [
       /\brandomized clinical trial\b/i,
       /\brandomised clinical trial\b/i,
+      /\brct\b/i,
     ],
   },
   {
@@ -45,6 +49,10 @@ export const PUBLICATION_TYPE_PATTERNS = [
   {
     type: "case study",
     patterns: [/\bcase study\b/i],
+  },
+  {
+    type: "case report",
+    patterns: [/\bcase report\b/i],
   },
   {
     type: "comparative study",
@@ -69,5 +77,21 @@ export const PUBLICATION_TYPE_PATTERNS = [
   {
     type: "mixed-methods study",
     patterns: [/\bmixed-methods study\b/i],
+  },
+  {
+    type: "predictive simulation study",
+    patterns: [/\bpredictive simulation study\b/i],
+  },
+  {
+    type: "simulation study",
+    patterns: [/\bsimulation study\b/i],
+  }, 
+  {
+    type: "cross-sectional study",
+    patterns: [/\bcross-sectional study\b/i],
+  },
+  {
+    type: "cohort study",
+    patterns: [/\bcohort study\b/i],
   },
 ];

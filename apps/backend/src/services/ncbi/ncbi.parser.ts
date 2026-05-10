@@ -49,7 +49,7 @@ export const parseEFetchXML = (xml: string): EFetchResponse => {
         },
         abstract: normalizeText(abstract),
         doi: doi,
-        publicationType: publicationTypeArray.map((type: any) => type["#text"]),
+        publicationTypes: publicationTypeArray.map((type: any) => type["#text"]),
         authors: authorList.map((author) => {
           return {
             foreName: author.ForeName ?? "",

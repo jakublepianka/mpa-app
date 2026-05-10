@@ -3,9 +3,10 @@ import { PUBLICATION_TYPE_PATTERNS } from "../rules/publicationType.rules";
 
 export const getPublicationTypes = (article: EFetchArticle): string[] => {
   const fetchedTypes =
-    article.publicationTypes?.filter(
-      (type) => type.toLowerCase() != "journal article",
-    ) ?? [];
+    article.publicationTypes
+      ?.map((type) => type.toLowerCase().trim())
+      .filter((type) => type.toLowerCase() !== "journal article") ?? [];
+
   const title = article.title.toLowerCase();
   // const abstract = article.abstract?.toLowerCase();
   // (FOR LATER) check for publication type in abstract
