@@ -3,7 +3,7 @@ export type ArticleFeatures = {
   publicationTypes: string[];
   publicationDate?: string;
   sampleSize?: number;
-  sampleType?: string[];
+  sampleTypes?: SampleType[];
   keywords: string[];
 };
 
@@ -18,4 +18,9 @@ export type AnalysisResult = {
     max?: number;
   };
   sampleTypes: Record<string, number>;
+};
+
+export type SampleType = {
+  label: string;
+  source: "title" | "abstract";
 };
