@@ -9,15 +9,15 @@ export type ArticleFeatures = {
 
 export type AnalysisResult = {
   totalArticles: number;
-  byDate: Record<string, number>;
-  publicationTypes: Record<string, number>;
-  keywords: Record<string, number>;
-  sampleSizes?: {
+  dateCounts: Record<string, number>;
+  publicationTypeCounts: Record<string, number>;
+  keywordCounts: Record<string, number>;
+  sampleSizeSummary?: {
     average?: number;
     min?: number;
     max?: number;
   };
-  sampleTypes: Record<string, number>;
+  sampleTypeCounts: Record<string, number>;
 };
 
 export type SampleType = {
