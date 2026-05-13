@@ -21,7 +21,7 @@ export const parseEFetchXML = (xml: string): EFetchResponse => {
   };
   const parser = new XMLParser(options);
   const res = parser.parse(xml);
-  
+
   const articles = ensureArray(res.PubmedArticleSet.PubmedArticle).map(
     (a: any) => {
       const article = a.MedlineCitation.Article;
@@ -30,7 +30,9 @@ export const parseEFetchXML = (xml: string): EFetchResponse => {
         ? `${date.Year}-${padDate(String(date.Month))}-${padDate(String(date.Day))}`
         : undefined;
       const doi = findByAttr(article.ELocationID, "EIdType", "doi");
-      const publicationTypeArray = ensureArray(article.PublicationTypeList.PublicationType);
+      const publicationTypeArray = ensureArray(
+        article.PublicationTypeList.PublicationType,
+      );
       const authorList = ensureArray(article.AuthorList?.Author);
       const title = ensureArray(article.ArticleTitle)
         .map(extractText)
@@ -49,7 +51,9 @@ export const parseEFetchXML = (xml: string): EFetchResponse => {
         },
         abstract: normalizeText(abstract),
         doi: doi,
-        publicationTypes: publicationTypeArray.map((type: any) => type["#text"]),
+        publicationTypes: publicationTypeArray.map(
+          (type: any) => type["#text"],
+        ),
         authors: authorList.map((author) => {
           return {
             foreName: author.ForeName ?? "",
@@ -59,9 +63,9 @@ export const parseEFetchXML = (xml: string): EFetchResponse => {
           };
         }),
         language: article.Language,
-        keywords: ensureArray(a.MedlineCitation.KeywordList?.Keyword).map(
-          (keyword) => keyword["#text"],
-        ),
+        keywords: ensureArray(a.MedlineCitation.KeywordList?.Keyword)
+          .map((keyword) => normalizeText(keyword["#text"]))
+          .filter((keyword) => typeof keyword === "string"),
       };
     },
   );
