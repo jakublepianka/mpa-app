@@ -15,7 +15,7 @@ export const processArticles = (data: EFetchResponse): ArticleFeatures[] => {
       publicationTypes: publicationTypes,
       publicationDate: article.publicationDate,
       sampleSize: sampleSize,
-      sampleType: sampleType,
+      sampleTypes: sampleType,
       keywords: article.keywords,
     };
   });
