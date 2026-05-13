@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { fetchESearch, fetchEFetch } from "../services/ncbi/ncbi.service";
 import { processArticles } from "../services/analysis/analysis.service";
+import { aggregateData } from "../services/analysis/analysis.aggregator";
 
 export const getHealthStatus = (req: Request, res: Response) => {
   res.json({ status: "okey" });
@@ -15,8 +16,8 @@ export const getAnalysisResults = async (req: Request, res: Response) => {
 
   const esearch = await fetchESearch(term);
   const efetch = await fetchEFetch(esearch.ids);
+  const processedArticles = processArticles(efetch);
+  const aggregatedData = aggregateData(processedArticles);
 
-  const processedArticles = processArticles(efetch); 
-  
-  res.status(200).json(processedArticles);
+  res.status(200).json(aggregatedData);
 };

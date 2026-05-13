@@ -24,3 +24,10 @@ export type SampleType = {
   label: string;
   source: "title" | "abstract";
 };
+
+export type SampleSizeAccumulator = {
+  count: number;
+  sum: number;
+  min: number;
+  max: number;
+};
