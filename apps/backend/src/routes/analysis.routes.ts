@@ -11,7 +11,7 @@ const searchLimiter = rateLimit({
 
 analysisRouter.get("/health", getHealthStatus);
 
-analysisRouter.get("/search", searchLimiter, getAnalysisResults);
+analysisRouter.get("/analyze", searchLimiter, getAnalysisResults);
 
 
 

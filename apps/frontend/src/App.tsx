@@ -7,7 +7,7 @@ function App() {
     if (didFetch.current) return;
     didFetch.current = true;
 
-    fetch("/api/search?term=strength+training")
+    fetch("/api/analyze?term=strength+training")
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => {
