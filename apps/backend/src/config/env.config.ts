@@ -8,4 +8,5 @@ export const requireEnv = (name: string): string => {
 
 export const env = {
   NCBI_API_KEY: requireEnv("NCBI_API_KEY"),
+  DB_URL: requireEnv("DB_URL"),
 };
