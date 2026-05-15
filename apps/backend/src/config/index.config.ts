@@ -1,4 +1,4 @@
-import { Config } from "../types/config";
+import { Config } from "../types/config.type";
 import { ncbiConfig } from "./ncbi.config";
 
 export const config: Config = {
