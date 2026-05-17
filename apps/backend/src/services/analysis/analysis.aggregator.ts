@@ -44,7 +44,7 @@ export const aggregateData = (
   const sampleSizeSummary =
     sampleSizeAcc.count > 0
       ? {
-          average: sampleSizeAcc.sum / sampleSizeAcc.count,
+          average: Math.floor(sampleSizeAcc.sum / sampleSizeAcc.count),
           min: sampleSizeAcc.min,
           max: sampleSizeAcc.max,
         }
