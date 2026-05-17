@@ -7,10 +7,13 @@ function App() {
     if (didFetch.current) return;
     didFetch.current = true;
 
-    fetch("/api/analyze?term=vitamin+d+supplementation", {
+    fetch("/api/analyses", {
+      method: "POST",
       headers: {
+        "Content-Type": "application/json",
         "client-id": "09cd72ff-5b78-4acf-bc91-0ff66eeae89e",
       },
+      body: JSON.stringify({ term: "zinc supplementation" }),
     })
       .then((response) => response.json())
       .then((data) => console.log(data))

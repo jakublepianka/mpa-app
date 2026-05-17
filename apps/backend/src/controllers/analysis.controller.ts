@@ -6,7 +6,7 @@ export const getHealthStatus = (req: Request, res: Response) => {
 };
 
 export const getAnalysisResults = async (req: Request, res: Response) => {
-  const term = req.query.term as string;
+  const term = req.body.term as string;
   const clientId = req.headers["client-id"] as string;
 
   try {

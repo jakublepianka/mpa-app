@@ -16,8 +16,8 @@ const searchLimiter = rateLimit({
 
 analysisRouter.get("/health", getHealthStatus);
 
-analysisRouter.get(
-  "/analyze",
+analysisRouter.post(
+  "/analyses",
   searchLimiter,
   validateClientId,
   validateQuery,
