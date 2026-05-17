@@ -5,7 +5,7 @@ export const getHealthStatus = (req: Request, res: Response) => {
   res.json({ status: "okey" });
 };
 
-export const getAnalysisResults = async (req: Request, res: Response) => {
+export const createOrGetAnalysis = async (req: Request, res: Response) => {
   const term = req.body.term as string;
   const clientId = req.headers["client-id"] as string;
 

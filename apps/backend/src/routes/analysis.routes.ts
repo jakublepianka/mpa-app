@@ -2,7 +2,7 @@ import { Router } from "express";
 import rateLimit from "express-rate-limit";
 import {
   getHealthStatus,
-  getAnalysisResults,
+  createOrGetAnalysis,
 } from "../controllers/analysis.controller";
 import { validateClientId } from "../middleware/clientId.middleware";
 import { validateQuery } from "../middleware/query.middleware";
@@ -21,7 +21,7 @@ analysisRouter.post(
   searchLimiter,
   validateClientId,
   validateQuery,
-  getAnalysisResults,
+  createOrGetAnalysis,
 );
 
 export { analysisRouter };
