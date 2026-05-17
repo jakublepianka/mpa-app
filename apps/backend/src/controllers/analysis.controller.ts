@@ -9,21 +9,11 @@ export const getHealthStatus = (req: Request, res: Response) => {
 };
 
 export const getAnalysisResults = async (req: Request, res: Response) => {
-  const { term } = req.query;
-  const clientId = req.headers["client-id"];
-
-  if (typeof clientId !== "string") {
-    return res.status(400).json({
-      error: "Missing client-id header",
-    });
-  }
-
-  if (typeof term !== "string") {
-    return res.status(400).json({ error: "term must be a string" });
-  }
+  const term = req.query.term as string;
+  const clientId = req.headers["client-id"] as string;
 
   try {
-    const existingAnalysis = await getAnalysisByQuery(clientId, term); 
+    const existingAnalysis = await getAnalysisByQuery(clientId, term);
     if (existingAnalysis) return res.status(200).json(existingAnalysis);
     const esearch = await fetchESearch(term);
     const efetch = await fetchEFetch(esearch.ids);
@@ -38,7 +28,7 @@ export const getAnalysisResults = async (req: Request, res: Response) => {
     return res.status(200).json(createdAnalysis);
   } catch (err) {
     console.error("TOP LEVEL FAILURE", err);
-  
+
     return res.status(500).json({
       error: "Internal server error",
     });
