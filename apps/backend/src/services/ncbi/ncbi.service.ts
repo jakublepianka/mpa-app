@@ -17,7 +17,7 @@ export const fetchESearch = async (term: string): Promise<ESearchResponse> => {
 };
 
 export const fetchEFetch = async (ids: string[]): Promise<EFetchResponse> => {
-  const batchSize = 200;
+  const batchSize = 100;
   const articles: any[] = [];
   let nextAllowedTime = Date.now();
 
@@ -32,26 +32,57 @@ export const fetchEFetch = async (ids: string[]): Promise<EFetchResponse> => {
 
     const batch: string = ids.slice(i, i + batchSize).join(",");
     const url = buildEFetchUrl();
+    const maxRetries = 3;
 
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `id=${batch}`,
-    });
+    let success = false;
 
-    if (!res.ok) {
-      throw new Error(
-        `EFetch failed: ${res.status} ${res.statusText}`,
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `id=${batch}`,
+        });
+
+        if (!res.ok) {
+          throw new Error(`EFetch failed: ${res.status} ${res.statusText}`);
+        }
+
+        const xml = await res.text();
+
+        if (!xml.includes("<PubmedArticle")) {
+          console.warn(
+            `EFetch batch of invalid retmode at indices ${i}-${i + batchSize}`,
+          );
+
+          success = true;
+          break;
+        }
+
+        const parsed = parseEFetchXML(xml);
+
+        articles.push(...parsed.articles);
+
+        success = true;
+        break;
+      } catch (error) {
+        console.error(
+          `Batch failed (attempt ${attempt}/${maxRetries})`,
+          error,
+        );
+
+        if (attempt < maxRetries) {
+          await sleep(500 * attempt);
+        }
+      }
+    }
+    if (!success) {
+      console.error(
+        `Skipping permanently failing batch starting at index ${i}`,
       );
     }
-
-    const xml = await res.text();
-    if (!xml.includes("<PubmedArticle")) continue; 
-    const parsed = parseEFetchXML(xml);
-
-    articles.push(...parsed.articles);
   }
 
   return { articles: articles };
