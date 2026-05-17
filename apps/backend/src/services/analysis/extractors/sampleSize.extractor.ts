@@ -13,10 +13,10 @@ export const getSampleSize = (article: EFetchArticle): number | undefined => {
     if (!rawValue) continue;
 
     const parsed = Number(
-      rawValue.replace(/,/g, "")
+      rawValue.replace(/[,\s]/g, "")
     );
 
-    if (!Number.isNaN(parsed)) {
+    if (!Number.isNaN(parsed) && parsed > 0) {
       return parsed;
     }
   }
