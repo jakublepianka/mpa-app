@@ -3,7 +3,8 @@ import rateLimit from "express-rate-limit";
 import {
   getHealthStatus,
   createOrGetAnalysis,
-  getAnalysis
+  getAnalysis,
+  getAnalyses,
 } from "../controllers/analysis.controller";
 import { validateClientId } from "../middleware/clientId.middleware";
 import { validateQuery } from "../middleware/query.middleware";
@@ -25,9 +26,8 @@ analysisRouter.post(
   createOrGetAnalysis,
 );
 
-analysisRouter.get(
-  "/analyses/:analysisId",
-  getAnalysis
-);
+analysisRouter.get("/analyses/:analysisId", getAnalysis);
+
+analysisRouter.get("/analyses", getAnalyses);
 
 export { analysisRouter };

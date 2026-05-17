@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getOrCreateAnalysis } from "../services/analysis/analysis.service";
-import { getAnalysisById } from "../repos/analysis.repo";
+import { getAnalysisById, getUserAnalyses } from "../repos/analysis.repo";
 
 export const getHealthStatus = async (req: Request, res: Response) => {
   res.json({ status: "okey" });
@@ -37,6 +37,21 @@ export const getAnalysis = async (req: Request, res: Response) => {
     return res.status(200).json(analysis);
   } catch (error) {
     console.error("Analysis fetch failure", error);
+
+    return res.status(500).json({
+      error: "Internal server error",
+    });
+  }
+};
+
+export const getAnalyses = async (req: Request, res: Response) => {
+  const clientId = req.headers["client-id"] as string;
+
+  try {
+    const analyses = await getUserAnalyses(clientId);
+    return res.status(200).json(analyses);
+  } catch (error) {
+    console.error("Analyses fetch failure", error);
 
     return res.status(500).json({
       error: "Internal server error",
