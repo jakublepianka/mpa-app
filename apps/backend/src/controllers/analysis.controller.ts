@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { fetchESearch, fetchEFetch } from "../services/ncbi/ncbi.service";
-import { processArticles } from "../services/analysis/analysis.service";
+import { processArticles } from "../services/analysis/analysis.processor";
 import { aggregateData } from "../services/analysis/analysis.aggregator";
 import { createAnalysis, getAnalysisByQuery } from "../repos/analysis.repo";
 
