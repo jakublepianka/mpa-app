@@ -78,7 +78,7 @@ export const getUserAnalyses = async (
   return rows;
 };
 
-export const deleteAnalysis = async (analysisId: string): Promise<boolean> => {
+export const deleteAnalysisById = async (analysisId: string): Promise<boolean> => {
   const result = await pool.query("DELETE FROM analyses WHERE id = $1", [
     analysisId,
   ]);
