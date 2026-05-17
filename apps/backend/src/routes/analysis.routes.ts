@@ -5,6 +5,7 @@ import {
   createOrGetAnalysis,
   getAnalysis,
   getAnalyses,
+  deleteAnalysis,
 } from "../controllers/analysis.controller";
 import { validateClientId } from "../middleware/clientId.middleware";
 import { validateQuery } from "../middleware/query.middleware";
@@ -29,5 +30,7 @@ analysisRouter.post(
 analysisRouter.get("/analyses/:analysisId", getAnalysis);
 
 analysisRouter.get("/analyses", getAnalyses);
+
+analysisRouter.delete("/analyses/:analysisId", deleteAnalysis);
 
 export { analysisRouter };

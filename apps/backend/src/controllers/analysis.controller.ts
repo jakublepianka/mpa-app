@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getOrCreateAnalysis } from "../services/analysis/analysis.service";
-import { getAnalysisById, getUserAnalyses } from "../repos/analysis.repo";
+import { getAnalysisById, getUserAnalyses, deleteAnalysisById } from "../repos/analysis.repo";
 
 export const getHealthStatus = async (req: Request, res: Response) => {
   res.json({ status: "okey" });
@@ -58,3 +58,26 @@ export const getAnalyses = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const deleteAnalysis = async (req: Request, res: Response) => {
+  const analysisId = req.params.analysisId as string;
+  
+  try {
+    const analysis = await deleteAnalysisById(analysisId);
+
+    if (analysis === false) {
+      return res.status(404).json({
+        error: "Analysis not found",
+      });
+    }
+
+    return res.status(204).json(analysis);
+  } catch (error) {
+    console.error("Analysis deletion failure", error);
+
+    return res.status(500).json({
+      error: "Internal server error",
+    });
+  }
+};
+
