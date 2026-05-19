@@ -1,5 +1,5 @@
 import { pool } from "../db/db.connection";
-import { AnalysisResult } from "../services/analysis/analysis.types";
+import { AnalysisResult } from "../../../../packages/shared/analysisResult.types";
 import { AnalysisRecord } from "../types/analysis.record";
 
 export const createAnalysis = async (

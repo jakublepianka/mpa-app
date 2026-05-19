@@ -1,4 +1,4 @@
-import { AnalysisResult } from "../services/analysis/analysis.types";
+import { AnalysisResult } from "../../../../packages/shared/analysisResult.types";
 
 export type AnalysisRecord = {
   id: string;

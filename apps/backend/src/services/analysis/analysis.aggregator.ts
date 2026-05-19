@@ -1,8 +1,5 @@
-import {
-  AnalysisResult,
-  ArticleFeatures,
-  SampleSizeAccumulator,
-} from "./analysis.types";
+import { ArticleFeatures, SampleSizeAccumulator } from "./analysis.types";
+import { AnalysisResult } from "../../../../../packages/shared/analysisResult.types";
 
 export const aggregateData = (
   processedArticles: ArticleFeatures[] /*, query*/,
