@@ -1,4 +1,4 @@
-import { EFetchArticle } from "../../../types/efetch.response";
+import type { EFetchArticle } from "../../../types/efetch.response";
 import { PUBLICATION_TYPE_PATTERNS } from "../rules/publicationType.rules";
 
 export const getPublicationTypes = (article: EFetchArticle): string[] => {

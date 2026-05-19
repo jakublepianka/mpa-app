@@ -1,6 +1,6 @@
 import { pool } from "../db/db.connection";
-import { AnalysisResult } from "../../../../packages/shared/analysisResult.types";
-import { AnalysisRecord } from "../types/analysis.record";
+import type { AnalysisResult } from "../../../../packages/shared/analysisResult.types";
+import type { AnalysisRecord } from "../types/analysis.record";
 
 export const createAnalysis = async (
   userId: string,

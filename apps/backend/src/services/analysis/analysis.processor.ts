@@ -1,5 +1,5 @@
-import { EFetchResponse } from "../../types/efetch.response";
-import { ArticleFeatures } from "./analysis.types";
+import type { EFetchResponse } from "../../types/efetch.response";
+import type { ArticleFeatures } from "./analysis.types";
 import { getPublicationTypes } from "./extractors/publicationType.extractor";
 import { getSampleSize } from "./extractors/sampleSize.extractor";
 import { getSampleType } from "./extractors/sampleType.extractor";

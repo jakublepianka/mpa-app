@@ -1,6 +1,6 @@
 import { XMLParser } from "fast-xml-parser";
-import { ESearchResponse } from "../../types/esearch.response";
-import { EFetchResponse } from "../../types/efetch.response";
+import type { ESearchResponse } from "../../types/esearch.response";
+import type { EFetchResponse } from "../../types/efetch.response";
 import { normalizeText } from "./ncbi.normalize";
 
 export const mapESearchResponse = (data: any): ESearchResponse => {

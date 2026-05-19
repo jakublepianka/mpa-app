@@ -1,5 +1,5 @@
-import { ESearchResponse } from "../../types/esearch.response";
-import { EFetchResponse } from "../../types/efetch.response";
+import type { ESearchResponse } from "../../types/esearch.response";
+import type { EFetchResponse } from "../../types/efetch.response";
 import { mapESearchResponse, parseEFetchXML } from "./ncbi.parser";
 import { buildESearchUrl, buildEFetchUrl } from "./ncbi.urls";
 

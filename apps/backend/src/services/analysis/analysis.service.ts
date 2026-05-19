@@ -4,7 +4,7 @@ import { fetchESearch } from "../ncbi/ncbi.service";
 import { processArticles } from "./analysis.processor";
 import { aggregateData } from "./analysis.aggregator";
 import { createAnalysis } from "../../repos/analysis.repo";
-import { AnalysisRecord } from "../../types/analysis.record";
+import type { AnalysisRecord } from "../../types/analysis.record";
 
 export const getOrCreateAnalysis = async (
   clientId: string,

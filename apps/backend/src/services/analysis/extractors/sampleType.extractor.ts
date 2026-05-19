@@ -1,5 +1,5 @@
-import { EFetchArticle } from "../../../types/efetch.response";
-import { SampleType } from "../analysis.types";
+import type { EFetchArticle } from "../../../types/efetch.response";
+import type { SampleType } from "../analysis.types";
 import { SAMPLE_TYPE_PATTERNS } from "../rules/sampleType.rules";
 
 export const getSampleType = (article: EFetchArticle): SampleType[] => {

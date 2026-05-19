@@ -1,4 +1,4 @@
-import { EFetchArticle } from "../../../types/efetch.response";
+import type { EFetchArticle } from "../../../types/efetch.response";
 import { SAMPLE_SIZE_PATTERNS } from "../rules/sampleSize.rules";
 
 export const getSampleSize = (article: EFetchArticle): number | undefined => {
