@@ -68,15 +68,15 @@ export const deleteAnalysis = async (req: Request, res: Response) => {
   const clientId = req.headers["client-id"] as string;
 
   try {
-    const analysis = await deleteAnalysisById(analysisId, clientId);
+    const success = await deleteAnalysisById(analysisId, clientId);
 
-    if (analysis === false) {
+    if (success === false) {
       return res.status(404).json({
         error: "Analysis not found",
       });
     }
 
-    return res.status(204).json(analysis);
+    return res.status(204).json(success);
   } catch (error) {
     console.error("Analysis deletion failure", error);
 
