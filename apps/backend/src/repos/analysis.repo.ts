@@ -15,7 +15,8 @@ export const createAnalysis = async (
       `
       INSERT INTO users(id)
       VALUES($1)
-      ON CONFLICT DO NOTHING`,
+      ON CONFLICT DO NOTHING
+      `,
       [userId],
     );
 
@@ -27,7 +28,8 @@ export const createAnalysis = async (
         analysis 
       ) 
       VALUES($1, $2, $3)
-      RETURNING *`,
+      RETURNING *
+      `,
       [userId, query, analysis],
     );
 
@@ -45,9 +47,14 @@ export const createAnalysis = async (
 export const getAnalysisById = async (
   analysisId: string,
 ): Promise<AnalysisRecord | null> => {
-  const { rows } = await pool.query("SELECT * FROM analyses WHERE id = $1", [
-    analysisId,
-  ]);
+  const { rows } = await pool.query(
+    `
+    SELECT * 
+    FROM analyses 
+    WHERE id = $1
+    `,
+    [analysisId],
+  );
 
   return rows[0] ?? null;
 };
@@ -57,7 +64,12 @@ export const getAnalysisByQuery = async (
   query: string,
 ): Promise<AnalysisRecord | null> => {
   const { rows } = await pool.query(
-    "SELECT * FROM analyses WHERE user_id = $1 AND query = $2",
+    `
+    SELECT * 
+    FROM analyses 
+    WHERE user_id = $1 AND 
+    query = $2
+    `,
     [userId, query],
   );
 
@@ -68,20 +80,30 @@ export const getUserAnalyses = async (
   userId: string,
 ): Promise<AnalysisRecord[]> => {
   const { rows } = await pool.query(
-    `SELECT *
-     FROM analyses 
-     WHERE user_id = $1
-     ORDER BY created_at DESC`,
+    `
+    SELECT *
+    FROM analyses 
+    WHERE user_id = $1
+    ORDER BY created_at DESC
+    `,
     [userId],
   );
 
   return rows;
 };
 
-export const deleteAnalysisById = async (analysisId: string): Promise<boolean> => {
-  const result = await pool.query("DELETE FROM analyses WHERE id = $1", [
-    analysisId,
-  ]);
+export const deleteAnalysisById = async (
+  analysisId: string,
+  userId: string,
+): Promise<boolean> => {
+  const result = await pool.query(
+    `
+    DELETE FROM analyses 
+    WHERE id = $1 AND 
+    user_id = $2
+    `,
+    [analysisId, userId],
+  );
 
   return result.rowCount === 1;
 };

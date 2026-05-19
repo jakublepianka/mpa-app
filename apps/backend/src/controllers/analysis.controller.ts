@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import { getOrCreateAnalysis } from "../services/analysis/analysis.service";
-import { getAnalysisById, getUserAnalyses, deleteAnalysisById } from "../repos/analysis.repo";
+import {
+  getAnalysisById,
+  getUserAnalyses,
+  deleteAnalysisById,
+} from "../repos/analysis.repo";
 
 export const getHealthStatus = async (req: Request, res: Response) => {
   res.json({ status: "okey" });
@@ -61,9 +65,10 @@ export const getAnalyses = async (req: Request, res: Response) => {
 
 export const deleteAnalysis = async (req: Request, res: Response) => {
   const analysisId = req.params.analysisId as string;
-  
+  const clientId = req.headers["client-id"] as string;
+
   try {
-    const analysis = await deleteAnalysisById(analysisId);
+    const analysis = await deleteAnalysisById(analysisId, clientId);
 
     if (analysis === false) {
       return res.status(404).json({
@@ -80,4 +85,3 @@ export const deleteAnalysis = async (req: Request, res: Response) => {
     });
   }
 };
-

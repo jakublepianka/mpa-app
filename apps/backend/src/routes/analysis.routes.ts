@@ -31,6 +31,10 @@ analysisRouter.get("/analyses/:analysisId", getAnalysis);
 
 analysisRouter.get("/analyses", getAnalyses);
 
-analysisRouter.delete("/analyses/:analysisId", deleteAnalysis);
+analysisRouter.delete(
+  "/analyses/:analysisId",
+  validateClientId,
+  deleteAnalysis,
+);
 
 export { analysisRouter };
