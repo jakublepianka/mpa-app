@@ -76,7 +76,7 @@ export const deleteAnalysis = async (req: Request, res: Response) => {
       });
     }
 
-    return res.status(204).json(success);
+    return res.status(204).json({ success: success });
   } catch (error) {
     console.error("Analysis deletion failure", error);
 
