@@ -14,3 +14,7 @@ export type Analysis = {
   analysis: AnalysisResult;
   createdAt: Date;
 };
+
+export type DeleteAnalysisResponseDto = {
+  success: boolean;
+};
