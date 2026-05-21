@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import React from "react";
-import { createAnalysis } from "../api/analysis.api";
-import type { Analysis } from "../api/analysis.types";
+import { createAnalysis } from "../../api/analysis.api";
+import type { Analysis } from "../../api/analysis.types";
 
 export const SearchPage = () => {
   const navigate = useNavigate();

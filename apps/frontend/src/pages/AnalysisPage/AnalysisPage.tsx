@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
 
-import type { Analysis } from "../api/analysis.types";
+import type { Analysis } from "../../api/analysis.types";
 
 export const AnalysisPage = () => {
   const location = useLocation();

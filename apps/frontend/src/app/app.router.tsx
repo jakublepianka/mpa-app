@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router";
 import { RootLayout } from "./RootLayout";
-import { SearchPage } from "../pages/SearchPage";
-import { AnalysisPage } from "../pages/AnalysisPage";
-import { HistoryPage } from "../pages/HistoryPage";
+import { SearchPage } from "../pages/SearchPage/SearchPage";
+import { AnalysisPage } from "../pages/AnalysisPage/AnalysisPage";
+import { HistoryPage } from "../pages/HistoryPage/HistoryPage";
 
 export const router = createBrowserRouter([
   {
