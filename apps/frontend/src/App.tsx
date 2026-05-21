@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function App() {
+export const App = () => {
   const didFetch = useRef(false);
 
   useEffect(() => {
@@ -25,4 +25,3 @@ function App() {
   return <h1>Hello world</h1>;
 }
 
-export default App;
