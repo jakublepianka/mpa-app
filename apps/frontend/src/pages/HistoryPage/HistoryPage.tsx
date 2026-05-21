@@ -1,16 +1,7 @@
-import { useEffect } from "react";
-import { getAnalyses } from "../../api/analysis.api";
-// import type { Analysis } from "../api/analysis.types";
+import { useAnalyses } from "./useAnalyses";
 
 export const HistoryPage = () => {
-  useEffect(() => {
-    const getData = async () => {
-      const analyses = await getAnalyses();
-
-      console.log(analyses);
-    };
-
-    getData();
-  }, []);
+  const analyses = useAnalyses();
+  console.log(analyses);
   return <div>Here will be all of the users' analyses</div>;
 };
