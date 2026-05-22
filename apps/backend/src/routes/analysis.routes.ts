@@ -137,6 +137,40 @@ analysisRouter.get("/analyses/:analysisId", getAnalysis);
  */
 analysisRouter.get("/analyses", validateClientId, getAnalyses);
 
+/**
+ * @openapi
+ * /analyses/{analysisId}:
+ *   delete:
+ *     summary: Delete analysis by ID
+ *     description: |
+ *       Deletes a specific analysis identified by `analysisId`, scoped to the authenticated client via `client-id` header.
+ *       Returns 404 if the analysis does not exist or does not belong to the client.
+ *     parameters:
+ *       - in: header
+ *         name: client-id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Unique client identifier used for scoping analyses
+ *       - in: path
+ *         name: analysisId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Unique identifier of the analysis to delete
+ *     responses:
+ *       204:
+ *         description: Analysis successfully deleted
+ *
+ *       400:
+ *         description: Missing client-id header
+ *
+ *       404:
+ *         description: Analysis not found
+ *
+ *       500:
+ *         description: Internal server error
+ */
 analysisRouter.delete(
   "/analyses/:analysisId",
   validateClientId,
