@@ -4,8 +4,6 @@ import { SAMPLE_TYPE_PATTERNS } from "../rules/sampleType.rules";
 
 export const getSampleType = (article: EFetchArticle): SampleType[] => {
   const title = article.title.toLowerCase();
-  // go over sampletype patterns with title and then abstract
-  // extract HUMAN_GROUP
   for (const pattern of SAMPLE_TYPE_PATTERNS) {
     const matches = pattern.exec(title);
 
@@ -23,8 +21,3 @@ export const getSampleType = (article: EFetchArticle): SampleType[] => {
 
   return [];
 };
-
-// const extractSampleType = (title: string): string => {
-//   return "";
-// };
-

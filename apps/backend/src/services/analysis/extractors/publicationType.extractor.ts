@@ -8,8 +8,6 @@ export const getPublicationTypes = (article: EFetchArticle): string[] => {
       .filter((type) => type.toLowerCase() !== "journal article") ?? [];
 
   const title = article.title.toLowerCase();
-  // const abstract = article.abstract?.toLowerCase();
-  // (FOR LATER) check for publication type in abstract
 
   const titleTypes = PUBLICATION_TYPE_PATTERNS.map((typePattern) => {
     const foundType = typePattern.patterns.find((pattern) =>

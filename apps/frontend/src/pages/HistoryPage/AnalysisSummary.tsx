@@ -2,7 +2,6 @@ import { useNavigate } from "react-router";
 import type { Analysis } from "../../api/analysis.types";
 
 export const AnalysisSummary = ({ analysis }: { analysis: Analysis }) => {
-  console.log(analysis);
   const navigate = useNavigate();
 
   const handleNav = () => {

@@ -48,15 +48,4 @@ const BASIC_PATTERN = new RegExp(
 // "cattle",
 // "cows"
 
-export const SAMPLE_TYPE_PATTERNS = [
-  WITH_CLAUSE_PATTERN,
-  // new RegExp(
-  // `(?<sampleType>(?:${HUMAN_GROUPS.join("|")})(?:\\s+\\w+){0,2}\\s+with\\s+(?:\\w+(?:-\\w+)?\\s*){1,5})(?=\\s+(?:during|after|using|undergoing)|[.,;:]|$)`,
-  // "i",
-  // ),
-  BASIC_PATTERN,
-  // new RegExp(
-  // `(?:among|of|in|for)\\s+(?<sampleType>(?:\\w+(?:-\\w+)?\\s){0,3})(?:${HUMAN_GROUPS.join("|")})\\b`,
-  // "i",
-  // ),
-];
+export const SAMPLE_TYPE_PATTERNS = [WITH_CLAUSE_PATTERN, BASIC_PATTERN];
