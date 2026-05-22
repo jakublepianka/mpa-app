@@ -105,7 +105,37 @@ analysisRouter.post(
  */
 analysisRouter.get("/analyses/:analysisId", getAnalysis);
 
-analysisRouter.get("/analyses", getAnalyses);
+/**
+ * @openapi
+ * /analyses:
+ *   get:
+ *     summary: Retrieve all analyses for a client
+ *     description: |
+ *       Returns a list of analyses associated with the authenticated client.
+ *       Each analysis is scoped by the required `client-id` header.
+ *     parameters:
+ *       - in: header
+ *         name: client-id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Unique client identifier used for scoping analyses
+ *     responses:
+ *       200:
+ *         description: List of analyses for the client
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/AnalysisRecord'
+ *
+ *       400:
+ *         description: Missing client-id header
+ *       500:
+ *         description: Internal server error
+ */
+analysisRouter.get("/analyses", validateClientId, getAnalyses);
 
 analysisRouter.delete(
   "/analyses/:analysisId",
