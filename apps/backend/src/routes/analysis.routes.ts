@@ -66,6 +66,43 @@ analysisRouter.post(
   createOrGetAnalysis,
 );
 
+/**
+ * @openapi
+ * /analyses/{analysisId}:
+ *   get:
+ *     summary: Retrieve analysis by ID
+ *     description: |
+ *       Returns a previously computed analysis identified by its unique analysisId.
+ *       The analysis is scoped per client via the required `client-id` header.
+ *
+ *       If the analysis does not exist, a 404 response is returned.
+ *     parameters:
+ *       - in: header
+ *         name: client-id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Unique client identifier used for scoping analyses
+ *       - in: path
+ *         name: analysisId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Unique identifier of the analysis to retrieve
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved analysis
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/AnalysisRecord'
+ *       400:
+ *         description: Missing or invalid client-id header
+ *       404:
+ *         description: Analysis not found
+ *       500:
+ *         description: Internal server error
+ */
 analysisRouter.get("/analyses/:analysisId", getAnalysis);
 
 analysisRouter.get("/analyses", getAnalyses);
