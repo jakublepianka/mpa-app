@@ -15,7 +15,32 @@ export const AnalysisPage = () => {
         {analysis.analysis.totalArticles}
       </p>
       <div>
-        <Histogram analysis={analysis} />
+        <div>
+          <h2>Sample sizes</h2>
+          <p>Average: {analysis.analysis.sampleSizeSummary?.average}</p>
+          <p>Min: {analysis.analysis.sampleSizeSummary?.min}</p>
+          <p>Max: {analysis.analysis.sampleSizeSummary?.max}</p>
+        </div>
+      </div>
+      <div style={{ display: "flex", gap: "1rem" }}>
+        <div>
+          <h2>Number of publications by date</h2>
+          <Histogram
+            analysis={analysis}
+            analysisKey={"dateCounts"}
+            isDate={true}
+            limit={Infinity}
+          />
+        </div>
+        <div>
+          <h2>Types of studies</h2>
+          <Histogram
+            analysis={analysis}
+            analysisKey={"publicationTypeCounts"}
+            isDate={false}
+            limit={10}
+          />
+        </div>
       </div>
     </div>
   );
