@@ -1,5 +1,5 @@
 import swaggerUi from "swagger-ui-express";
-import { swaggerSpec } from "./config/swagger.config";
+import { swaggerSpec } from "./config/swagger/swagger.config";
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
