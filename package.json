@@ -1,14 +1,14 @@
 {
-  "name": "z606_jakublepianka",
+  "name": "mpa-app",
   "version": "1.0.0",
-  "description": "TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project.",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://WWSI-JakubLepianka@dev.azure.com/WWSI-JakubLepianka/Z606_JakubLepianka/_git/Z606_JakubLepianka"
+    "url": "https://github.com/jakublepianka/mpa-app"
   },
   "keywords": [],
   "author": "",

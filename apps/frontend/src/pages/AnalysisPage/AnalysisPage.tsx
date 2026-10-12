@@ -159,7 +159,7 @@ export const AnalysisPage = () => {
           </section>
 
           <section className="grid grid-cols-1 xl:grid-cols-12 gap-gutter">
-            <Card className="xl:col-span-7 min-w-0">
+            <Card className="xl:col-span-7 min-w-0 flex flex-col">
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-space-xs pb-space-md border-b border-outline-variant/20 mb-space-md">
                 <h2 className="text-headline-md text-on-surface">
                   Number of publications by year
