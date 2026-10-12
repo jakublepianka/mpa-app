@@ -2,6 +2,19 @@
 
 Search a medical topic and get an aggregated analysis of PubMed literature — publication timelines, study types, sample sizes, keyword frequencies, and more. MPA fetches articles via the NCBI E-Utilities API, extracts methodological data from abstracts, titles, and article metadata using rule-based parsing, and presents the results as interactive charts.
 
+## Screenshots
+
+There is no hosted demo — running the app needs a local PostgreSQL database and an NCBI API key (see [Setup](#setup)) — so here is what it looks like.
+
+**Analysis** — the result for one topic: sample size summary, most frequent keywords and study populations, publications per year, and the most common study types.
+
+![Analysis page for "Metformin longevity": summary cards, a publications-per-year bar chart and a ranked list of study types](docs/screenshots/analysis-page.png)
+
+| Search | History |
+| --- | --- |
+| ![Search page with a topic input and example queries](docs/screenshots/search-page.png) | ![History page listing past analyses with a filter box](docs/screenshots/history-page.png) |
+| Enter a topic, or start from an example query. An analysis of up to 1,000 articles takes several seconds. | Past analyses are kept per browser and reopen instantly, with a filter to find one by topic. |
+
 ## Why this exists
 
 Researchers reviewing biomedical literature typically scan dozens of abstracts manually to understand what's been studied, with which methods, and where the gaps are. AI-powered tools like Consensus, Elicit, PubMed.ai, and Scholarcy help with discovery and summarization — and some can aggregate findings across publications — but they rely on opaque language models, so you can't inspect why a given paper was classified a certain way or reproduce the exact same result twice.
